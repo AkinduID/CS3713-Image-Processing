@@ -9,8 +9,6 @@ try:
 except:
     print('Image not found')
     exit()
-# Convert to grayscale
-
 
 # Create a 3x2 subplot
 fig, axs = plt.subplots(2, 3, figsize=(12,8))

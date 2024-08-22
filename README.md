@@ -2,9 +2,12 @@
 This includes all the source files of Labs given under "Image Processing" module in semester 5 of Computer Science and Engineering Department, University of Moratuwa
 
 # Assignment 1
+In this Assignment we have to open and image. do several operations on that image, display the different images after each operation while saving them individually and as a plot.
+This is the Source Image
+![Source Image](Assignment 1/210113L_SrcImage.jpg)
 
 ## 1. Unprocessed Grayscale Image (Grid 1,1)
-
+![Grayscale Image](Assignment 1/210113L_OPImage_1x1.jpg)
 **Explanation:** 
 Converting a color image to grayscale involves averaging or applying a weighted sum of the red, green, and blue (RGB) channels to obtain the intensity value for each pixel.
 
