@@ -9,79 +9,94 @@ This is the Source Image
 </div>
 
 ## 1. Unprocessed Grayscale Image (Grid 1,1)
-![Grayscale Image](Assignment 1/210113L_OPImage_1x1.jpg)
+<div class="image-container">
+  <img src="Assignment 1/210113L_OPImage_1x1.jpg" width="400" alt="Source Image" />
+</div>
+
 **Explanation:** 
 Converting a color image to grayscale involves averaging or applying a weighted sum of the red, green, and blue (RGB) channels to obtain the intensity value for each pixel.
 
-**Equation:**
-\[ I_{gray}(x, y) = 0.299 \cdot R(x, y) + 0.587 \cdot G(x, y) + 0.114 \cdot B(x, y) \]
+```python
+#The Operation can be done in python as follows
+height = len(SrcImage)
+width = len(SrcImage[0])
+grey_image = [[0 for _ in range(width)] for _ in range(height)]
 
-where:
-- \( I_{gray}(x, y) \) is the grayscale intensity at pixel \((x, y)\),
-- \( R(x, y) \), \( G(x, y) \), and \( B(x, y) \) are the red, green, and blue intensity values at pixel \((x, y)\), respectively.
+for i in range(height):
+    for j in range(width):
+        R = SrcImage[i][j][0]
+        G = SrcImage[i][j][1]
+        B = SrcImage[i][j][2]
+        grey_value = int(0.2989 * R + 0.5870 * G + 0.1140 * B)
+        grey_image[i][j] = grey_value
+
+# Using numpy library the same can be done very easily.
+grey_image = np.dot(SrcImage[..., :3], [0.2989, 0.5870, 0.1140]).astype(np.uint8)
+```
 
 ## 2. Negative Image (Grid 1,2)
+<div class="image-container">
+  <img src="Assignment 1/210113L_OPImage_1x2.jpg" width="400" alt="Source Image" />
+</div>
 
 **Explanation:**
 To create a negative image, the intensity values of each pixel are inverted. This transformation inverts the grayscale values, making light areas dark and vice versa.
-
-**Equation:**
-\[ I_{neg}(x, y) = 255 - I_{gray}(x, y) \]
-
-where:
-- \( I_{neg}(x, y) \) is the intensity of the negative image at pixel \((x, y)\),
-- \( I_{gray}(x, y) \) is the grayscale intensity of the original image at pixel \((x, y)\).
-
+```python
+negative_image = 255 - grey_image
+```
 ## 3. Increased Brightness by 20% (Grid 1,3)
-
+<div class="image-container">
+  <img src="Assignment 1/210113L_OPImage_1x3.jpg" width="400" alt="Source Image" />
+</div>
 **Explanation:**
 To increase the brightness of an image, a percentage of the pixel intensity is added to each pixel value. Here, each pixel's value is increased by 20%, and the result is clamped to stay within the valid range of 0 to 255.
 
-**Equation:**
-\[ I_{bright}(x, y) = \text{clip}(1.2 \cdot I_{gray}(x, y), 0, 255) \]
-
-where:
-- \( I_{bright}(x, y) \) is the intensity of the brightened image at pixel \((x, y)\),
-- \( I_{gray}(x, y) \) is the grayscale intensity of the original image at pixel \((x, y)\),
-- \(\text{clip}(v, \text{min}, \text{max})\) ensures that the values are constrained between 0 and 255.
+```python
+bright_image = grey_image + 0.2 * 255
+bright_image = np.clip(bright_image, 0, 255).astype(np.uint8)
+```
 
 ## 4. Reduced Contrast (Grid 2,1)
+<div class="image-container">
+  <img src="Assignment 1/210113L_OPImage_2x1.jpg" width="400" alt="Source Image" />
+</div>
 
 **Explanation:**
 Reducing contrast compresses the range of pixel values into a specified range. Here, the gray levels are adjusted to be between 125 and 175, reducing the dynamic range.
 
-**Equation:**
-\[ I_{contrast}(x, y) = \text{clip}\left(\frac{I_{gray}(x, y) - \mu}{\sigma} \cdot \alpha + \beta, 125, 175\right) \]
+```python
+# Reduced contrast
+normalized_image = grey_image / 255.0
+# Scale the normalized values to the range 125-175
+low_contrast_image = (normalized_image * 50) + 125
+# Convert the scaled values back to 8-bit format
+low_contrast_image = np.clip(low_contrast_image, 125, 175).astype(np.uint8)
 
-where:
-- \( \mu \) is the mean intensity of the grayscale image,
-- \( \sigma \) is the standard deviation of the grayscale image intensity,
-- \( \alpha \) and \( \beta \) are constants to scale and shift the pixel values to the desired range.
+```
 
 ## 5. Reduced Gray Level Depth to 4bpp (Grid 2,2)
+<div class="image-container">
+  <img src="Assignment 1/210113L_OPImage_2x2.jpg" width="400" alt="Source Image" />
+</div>
 
 **Explanation:**
 Reducing the gray level depth from 8 bpp to 4 bpp involves quantizing the intensity levels into fewer distinct values, which groups similar pixel values together.
+```python
+reduced_depth_image = (grey_image >> 4)*16
 
-**Equation:**
-\[ I_{4bpp}(x, y) = \left\lfloor \frac{I_{gray}(x, y)}{16} \right\rfloor \cdot 16 \]
-
-where:
-- \( I_{4bpp}(x, y) \) is the intensity of the image with reduced gray level depth at pixel \((x, y)\),
-- \( I_{gray}(x, y) \) is the grayscale intensity of the original image at pixel \((x, y)\),
-- \(\left\lfloor \cdot \right\rfloor\) denotes the floor function, which rounds down to the nearest integer.
+```
 
 ## 6. Vertical Mirror Image (Grid 2,3)
+<div class="image-container">
+  <img src="Assignment 1/210113L_OPImage_2x3.jpg" width="400" alt="Source Image" />
+</div>
+
 
 **Explanation:**
 The vertical mirror operation flips the image along the horizontal axis, producing a reflection of the original image as if viewed in a mirror placed vertically.
+```python
+flipped_image = grey_image[:, ::-1]
 
-**Equation:**
-\[ I_{mirror}(x, y) = I_{gray}(x, H - y) \]
-
-where:
-- \( I_{mirror}(x, y) \) is the intensity of the mirrored image at pixel \((x, y)\),
-- \( I_{gray}(x, y) \) is the grayscale intensity of the original image at pixel \((x, y)\),
-- \( H \) is the height of the image.
+```
 
 
