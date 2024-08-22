@@ -3,10 +3,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Load the image
-SrcImage = cv2.imread('210113L_SrcImage.jpg')
-
+try:
+    SrcImage = cv2.imread("210113L_SrcImage.jpg")
+    grey_image = np.dot(SrcImage[..., :3], [0.2989, 0.5870, 0.1140]).astype(np.uint8)
+except:
+    print('Image not found')
+    exit()
 # Convert to grayscale
-grey_image = np.dot(SrcImage[..., :3], [0.2989, 0.5870, 0.1140]).astype(np.uint8)
+
 
 # Create a 3x2 subplot
 fig, axs = plt.subplots(2, 3, figsize=(12,8))
