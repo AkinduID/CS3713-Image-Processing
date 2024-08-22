@@ -4,7 +4,9 @@ This includes all the source files of Labs given under "Image Processing" module
 # Assignment 1
 In this Assignment we have to open and image. do several operations on that image, display the different images after each operation while saving them individually and as a plot.
 This is the Source Image
-![Source Image](Assignment 1/210113L_SrcImage.jpg)
+<div class="image-container">
+  <img src="Assignment 1/210113L_SrcImage.jpg" width="400" alt="Source Image" />
+</div>
 
 ## 1. Unprocessed Grayscale Image (Grid 1,1)
 ![Grayscale Image](Assignment 1/210113L_OPImage_1x1.jpg)
