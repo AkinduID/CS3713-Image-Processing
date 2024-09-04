@@ -2,7 +2,7 @@
 In this Assignment we have to open and image. do several operations on that image, display the different images after each operation while saving them individually and as a plot.
 This is the Source Image
 <div class="image-container">
-  <img src="Assignment 1/210113L_SrcImage.jpg" width="400" alt="Source Image" />
+  <img src="210113L_SrcImage.jpg" width="400" alt="Source Image" />
 </div>
 
 Opening the Image
@@ -12,7 +12,7 @@ SrcImage = cv2.imread("210113L_SrcImage.jpg")
 
 ## 1. Unprocessed Grayscale Image (Grid 1,1)
 <div class="image-container">
-  <img src="Assignment 1/210113L_OPImage_1x1.jpg" width="400" alt="Source Image" />
+  <img src="210113L_OPImage_1x1.jpg" width="400" alt="Source Image" />
 </div>
 
 
@@ -43,7 +43,7 @@ grey_image = cv2.cvtColor(src_image, cv2.COLOR_BGR2GRAY)
 
 ## 2. Negative Image (Grid 1,2)
 <div class="image-container">
-  <img src="Assignment 1/210113L_OPImage_1x2.jpg" width="400" alt="Source Image" />
+  <img src="210113L_OPImage_1x2.jpg" width="400" alt="Source Image" />
 </div>
 
 **Explanation:**
@@ -63,7 +63,7 @@ negative_image = cv2.bitwise_not(grey_image)
 ```
 ## 3. Increased Brightness by 20% (Grid 1,3)
 <div class="image-container">
-  <img src="Assignment 1/210113L_OPImage_1x3.jpg" width="400" alt="Source Image" />
+  <img src="210113L_OPImage_1x3.jpg" width="400" alt="Source Image" />
 </div>
 **Explanation:**
 To increase the brightness of an image, a percentage of the pixel intensity is added to each pixel value. Here, each pixel's value is increased by 20%, and the result is clamped to stay within the valid range of 0 to 255.
@@ -85,7 +85,7 @@ bright_image = cv2.convertScaleAbs(grey_image, alpha=1, beta=0.2 * 255)
 
 ## 4. Reduced Contrast (Grid 2,1)
 <div class="image-container">
-  <img src="Assignment 1/210113L_OPImage_2x1.jpg" width="400" alt="Source Image" />
+  <img src="210113L_OPImage_2x1.jpg" width="400" alt="Source Image" />
 </div>
 
 **Explanation:**
@@ -103,7 +103,7 @@ low_contrast_image = np.clip(low_contrast_image, 125, 175).astype(np.uint8)
 
 ## 5. Reduced Gray Level Depth to 4bpp (Grid 2,2)
 <div class="image-container">
-  <img src="Assignment 1/210113L_OPImage_2x2.jpg" width="400" alt="Source Image" />
+  <img src="210113L_OPImage_2x2.jpg" width="400" alt="Source Image" />
 </div>
 
 **Explanation:**
@@ -115,7 +115,7 @@ reduced_depth_image = (grey_image >> 4)*16
 
 ## 6. Vertical Mirror Image (Grid 2,3)
 <div class="image-container">
-  <img src="Assignment 1/210113L_OPImage_2x3.jpg" width="400" alt="Source Image" />
+  <img src="210113L_OPImage_2x3.jpg" width="400" alt="Source Image" />
 </div>
 
 
