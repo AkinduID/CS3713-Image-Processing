@@ -2,7 +2,7 @@
 In this Assignment we have to open and image and apply various filters.
 This is the Source Image
 <div class="image-container">
-  <img src="road13.png" width="400" alt="Source Image" />
+  <img src="road13.png" width="200" alt="Source Image" />
 </div>
 These are the Filters
 
