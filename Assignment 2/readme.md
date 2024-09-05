@@ -5,6 +5,7 @@ This is the Source Image
   <img src="road13.png" width="400" alt="Source Image" />
 </div>
 These are the Filters
+
 ```python
 filter_a = np.array([
     [0, -1, -1, -1, 0],
